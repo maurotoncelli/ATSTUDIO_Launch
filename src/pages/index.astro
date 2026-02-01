@@ -15,6 +15,15 @@ import PilotForm from '../components/UI/PilotForm.jsx';
   <!-- Interface Overlay -->
   <Interface />
   
+  <!-- Hidden form for Netlify Forms detection -->
+  <form name="pilot-application" netlify netlify-honeypot="bot-field" hidden>
+    <input type="text" name="name" />
+    <input type="email" name="email" />
+    <input type="text" name="company" />
+    <input type="url" name="website" />
+    <textarea name="details"></textarea>
+  </form>
+
   <!-- Pilot Form Modal (React) -->
   <PilotForm client:only="react" />
   

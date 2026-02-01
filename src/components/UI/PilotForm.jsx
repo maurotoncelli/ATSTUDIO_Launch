@@ -35,23 +35,40 @@ export default function PilotForm() {
     e.preventDefault();
     setIsSubmitting(true);
     
-    setTimeout(() => {
-      setSubmitStatus('success');
+    // Invia a Netlify Forms
+    const formData = new FormData(e.target);
+    
+    try {
+      const response = await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(formData).toString()
+      });
+      
+      if (response.ok) {
+        setSubmitStatus('success');
+        setIsSubmitting(false);
+        setTimeout(() => {
+          handleClose();
+          setFormData({
+            name: '',
+            email: '',
+            company: '',
+            website: '',
+            projectType: 'WebGL',
+            timeline: 'Q2 2026',
+            budget: 10000,
+            details: ''
+          });
+        }, 2000);
+      } else {
+        throw new Error('Form submission failed');
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
       setIsSubmitting(false);
-      setTimeout(() => {
-        handleClose();
-        setFormData({
-          name: '',
-          email: '',
-          company: '',
-          website: '',
-          projectType: 'WebGL',
-          timeline: 'Q2 2026',
-          budget: 10000,
-          details: ''
-        });
-      }, 2000);
-    }, 1500);
+      // Potresti aggiungere uno stato di errore qui
+    }
   };
 
   const handleChange = (e) => {
@@ -104,7 +121,18 @@ export default function PilotForm() {
                 <p className="text-[#c7d2ff]/60 text-sm md:text-sm mt-3 tracking-widest uppercase">We will contact you soon.</p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-5 md:space-y-14 lg:space-y-20">
+              <form 
+                onSubmit={handleSubmit} 
+                className="space-y-5 md:space-y-14 lg:space-y-20"
+                name="pilot-application"
+                method="POST"
+                data-netlify="true"
+                data-netlify-honeypot="bot-field"
+              >
+                {/* Hidden field for Netlify Forms */}
+                <input type="hidden" name="form-name" value="pilot-application" />
+                {/* Honeypot field for spam protection */}
+                <input type="hidden" name="bot-field" />
                 {/* Row 1: Name + Email */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-5 md:gap-y-12 lg:gap-y-20">
                   <div className="relative">
