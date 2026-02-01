@@ -190,4 +190,20 @@
   .animate-scroll-down {
     animation: scroll-down 1.5s ease-in-out infinite;
   }
+
+  /* Lampeggio elegante per scarcity badge */
+  @keyframes elegant-pulse {
+    0%, 100% {
+      opacity: 1;
+      text-shadow: 0 0 10px rgba(255, 68, 68, 0.3);
+    }
+    50% {
+      opacity: 0.85;
+      text-shadow: 0 0 20px rgba(255, 68, 68, 0.5);
+    }
+  }
+  
+  .scarcity-badge {
+    animation: elegant-pulse 2.5s ease-in-out infinite;
+  }
 </style>
