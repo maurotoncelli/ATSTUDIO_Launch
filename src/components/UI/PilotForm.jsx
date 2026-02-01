@@ -83,14 +83,13 @@ export default function PilotForm() {
 
   return (
     <div 
-      className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto bg-[#02040a] p-6 md:p-8 lg:p-12"
+      className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-[#02040a] p-6 md:p-8 lg:p-12"
       onClick={handleClose}
     >
       {/* Modal: Ottimizzato per mobile - tutto visibile in una schermata */}
       <div 
-        className="pilot-modal relative bg-transparent max-w-4xl w-full my-auto"
+        className="pilot-modal relative bg-transparent max-w-4xl w-full p-6 md:p-8 lg:p-12"
         onClick={(e) => e.stopPropagation()}
-        style={{ padding: '1.5rem 1.5rem' }}
       >
         {/* Close button - Mobile friendly */}
         <button
@@ -104,11 +103,11 @@ export default function PilotForm() {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-12 items-start">
           {/* Left: Info */}
           <div className="md:col-span-4 space-y-3 md:space-y-6">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-light text-[#f0f4ff] leading-tight tracking-tight" style={{ fontFamily: 'Playfair Display, serif' }}>
+            <h2 className="text-3xl md:text-3xl lg:text-4xl font-light text-[#f0f4ff] leading-tight tracking-tight" style={{ fontFamily: 'Playfair Display, serif' }}>
               Candidatura Pilot
             </h2>
             <div className="h-px w-12 bg-[#a6c1ff]/30"></div>
-            <p className="text-[#c7d2ff]/60 text-sm md:text-base lg:text-lg leading-relaxed tracking-wide hidden md:block">
+            <p className="text-[#c7d2ff]/60 text-sm md:text-sm lg:text-base leading-relaxed tracking-wide hidden md:block">
               Stiamo selezionando 3 partner visionari per il nostro lancio Q2 2026. Raccontaci del tuo progetto.
             </p>
           </div>
@@ -117,13 +116,13 @@ export default function PilotForm() {
           <div className="md:col-span-8">
             {submitStatus === 'success' ? (
               <div className="py-12 md:py-20 text-center md:text-left">
-                <p className="text-2xl md:text-3xl lg:text-4xl text-[#f0f4ff] font-light italic" style={{ fontFamily: 'Playfair Display, serif' }}>Candidatura ricevuta.</p>
-                <p className="text-[#c7d2ff]/60 text-base md:text-lg mt-3 tracking-widest uppercase">Ti contatteremo presto.</p>
+                <p className="text-2xl md:text-2xl lg:text-3xl text-[#f0f4ff] font-light italic" style={{ fontFamily: 'Playfair Display, serif' }}>Candidatura ricevuta.</p>
+                <p className="text-[#c7d2ff]/60 text-base md:text-sm mt-3 tracking-widest uppercase">Ti contatteremo presto.</p>
               </div>
             ) : (
               <form 
                 onSubmit={handleSubmit} 
-                className="space-y-5 md:space-y-14 lg:space-y-20"
+                className="space-y-5 md:space-y-10 lg:space-y-14"
                 name="pilot-application"
                 method="POST"
                 data-netlify="true"
@@ -134,9 +133,9 @@ export default function PilotForm() {
                 {/* Honeypot field for spam protection */}
                 <input type="hidden" name="bot-field" />
                 {/* Row 1: Name + Email */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-5 md:gap-y-12 lg:gap-y-20">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-5 md:gap-y-10 lg:gap-y-12">
                   <div className="relative">
-                    <label className="block text-sm md:text-base lg:text-lg tracking-[0.15em] md:tracking-[0.2em] text-[#c7d2ff]/70 uppercase mb-3">
+                    <label className="block text-sm md:text-xs lg:text-sm tracking-[0.15em] md:tracking-[0.2em] text-[#c7d2ff]/70 uppercase mb-3 md:mb-2">
                       Nome Completo
                     </label>
                     <input
@@ -145,12 +144,12 @@ export default function PilotForm() {
                       value={formData.name}
                       onChange={handleChange}
                       required
-                      className="w-full bg-transparent border-b-2 md:border-b border-[#f0f4ff]/30 pb-4 text-[#f0f4ff] text-lg md:text-xl lg:text-2xl focus:border-[#f0f4ff] outline-none transition-colors placeholder:text-[#c7d2ff]/20"
+                      className="w-full bg-transparent border-b-2 md:border-b border-[#f0f4ff]/30 pb-4 md:pb-3 text-[#f0f4ff] text-lg md:text-base lg:text-lg focus:border-[#f0f4ff] outline-none transition-colors placeholder:text-[#c7d2ff]/20"
                       placeholder="Mario Rossi"
                     />
                   </div>
                   <div className="relative">
-                    <label className="block text-sm md:text-base lg:text-lg tracking-[0.15em] md:tracking-[0.2em] text-[#c7d2ff]/70 uppercase mb-3">
+                    <label className="block text-sm md:text-xs lg:text-sm tracking-[0.15em] md:tracking-[0.2em] text-[#c7d2ff]/70 uppercase mb-3 md:mb-2">
                       Indirizzo Email
                     </label>
                     <input
@@ -159,16 +158,16 @@ export default function PilotForm() {
                       value={formData.email}
                       onChange={handleChange}
                       required
-                      className="w-full bg-transparent border-b-2 md:border-b border-[#f0f4ff]/30 pb-4 text-[#f0f4ff] text-lg md:text-xl lg:text-2xl focus:border-[#f0f4ff] outline-none transition-colors placeholder:text-[#c7d2ff]/20"
+                      className="w-full bg-transparent border-b-2 md:border-b border-[#f0f4ff]/30 pb-4 md:pb-3 text-[#f0f4ff] text-lg md:text-base lg:text-lg focus:border-[#f0f4ff] outline-none transition-colors placeholder:text-[#c7d2ff]/20"
                       placeholder="mario@esempio.it"
                     />
                   </div>
                 </div>
 
                 {/* Row 2: Company + Website */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-5 md:gap-y-12 lg:gap-y-20">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-5 md:gap-y-10 lg:gap-y-12">
                   <div className="relative">
-                    <label className="block text-sm md:text-base lg:text-lg tracking-[0.15em] md:tracking-[0.2em] text-[#c7d2ff]/70 uppercase mb-3">
+                    <label className="block text-sm md:text-xs lg:text-sm tracking-[0.15em] md:tracking-[0.2em] text-[#c7d2ff]/70 uppercase mb-3 md:mb-2">
                       Azienda / Brand
                     </label>
                     <input
@@ -176,12 +175,12 @@ export default function PilotForm() {
                       name="company"
                       value={formData.company}
                       onChange={handleChange}
-                      className="w-full bg-transparent border-b-2 md:border-b border-[#f0f4ff]/30 pb-4 text-[#f0f4ff] text-lg md:text-xl lg:text-2xl focus:border-[#f0f4ff] outline-none transition-colors placeholder:text-[#c7d2ff]/20"
+                      className="w-full bg-transparent border-b-2 md:border-b border-[#f0f4ff]/30 pb-4 md:pb-3 text-[#f0f4ff] text-lg md:text-base lg:text-lg focus:border-[#f0f4ff] outline-none transition-colors placeholder:text-[#c7d2ff]/20"
                       placeholder="Acme SRL"
                     />
                   </div>
                   <div className="relative">
-                    <label className="block text-sm md:text-base lg:text-lg tracking-[0.15em] md:tracking-[0.2em] text-[#c7d2ff]/70 uppercase mb-3">
+                    <label className="block text-sm md:text-xs lg:text-sm tracking-[0.15em] md:tracking-[0.2em] text-[#c7d2ff]/70 uppercase mb-3 md:mb-2">
                       Sito Web
                     </label>
                     <input
@@ -189,7 +188,7 @@ export default function PilotForm() {
                       name="website"
                       value={formData.website}
                       onChange={handleChange}
-                      className="w-full bg-transparent border-b-2 md:border-b border-[#f0f4ff]/30 pb-4 text-[#f0f4ff] text-lg md:text-xl lg:text-2xl focus:border-[#f0f4ff] outline-none transition-colors placeholder:text-[#c7d2ff]/20"
+                      className="w-full bg-transparent border-b-2 md:border-b border-[#f0f4ff]/30 pb-4 md:pb-3 text-[#f0f4ff] text-lg md:text-base lg:text-lg focus:border-[#f0f4ff] outline-none transition-colors placeholder:text-[#c7d2ff]/20"
                       placeholder="https://esempio.it"
                     />
                   </div>
@@ -197,7 +196,7 @@ export default function PilotForm() {
 
                 {/* Row 3: Project Vision (full width) */}
                 <div className="relative">
-                  <label className="block text-sm md:text-base lg:text-lg tracking-[0.15em] md:tracking-[0.2em] text-[#c7d2ff]/70 uppercase mb-3">
+                  <label className="block text-sm md:text-xs lg:text-sm tracking-[0.15em] md:tracking-[0.2em] text-[#c7d2ff]/70 uppercase mb-3 md:mb-2">
                     Visione Progetto
                   </label>
                   <textarea
@@ -205,20 +204,20 @@ export default function PilotForm() {
                     value={formData.details}
                     onChange={handleChange}
                     rows={4}
-                    className="w-full bg-transparent border-b-2 md:border-b border-[#f0f4ff]/30 pb-4 text-[#f0f4ff] text-lg md:text-xl lg:text-2xl focus:border-[#f0f4ff] outline-none transition-colors resize-none placeholder:text-[#c7d2ff]/20 leading-relaxed"
+                    className="w-full bg-transparent border-b-2 md:border-b border-[#f0f4ff]/30 pb-4 md:pb-3 text-[#f0f4ff] text-lg md:text-base lg:text-lg focus:border-[#f0f4ff] outline-none transition-colors resize-none placeholder:text-[#c7d2ff]/20 leading-relaxed"
                     placeholder="Raccontaci del tuo progetto..."
                   />
                 </div>
 
                 {/* Submit */}
                 <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 md:gap-6 pt-2 md:pt-4 lg:pt-8">
-                  <p className="text-xs md:text-sm lg:text-base text-[#c7d2ff]/40 tracking-[0.2em] uppercase max-w-[250px] hidden md:block leading-relaxed">
+                  <p className="text-xs md:text-[10px] lg:text-xs text-[#c7d2ff]/40 tracking-[0.2em] uppercase max-w-[220px] hidden md:block leading-relaxed">
                     Consulenza personalizzata per candidati selezionati.
                   </p>
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="group relative px-8 md:px-12 lg:px-16 py-5 md:py-6 lg:py-7 border-2 md:border-2 border-[#f0f4ff]/50 md:border-[#f0f4ff]/40 text-[#f0f4ff] text-base md:text-lg lg:text-xl tracking-[0.25em] md:tracking-[0.3em] font-medium md:font-light hover:border-[#f0f4ff] hover:bg-[#f0f4ff]/5 active:scale-95 transition-all duration-300 w-full md:w-auto disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="group relative px-8 md:px-12 lg:px-14 py-5 md:py-5 lg:py-6 border-2 md:border border-[#f0f4ff]/50 md:border-[#f0f4ff]/40 text-[#f0f4ff] text-base md:text-sm lg:text-base tracking-[0.25em] md:tracking-[0.3em] font-medium md:font-light hover:border-[#f0f4ff] hover:bg-[#f0f4ff]/5 active:scale-95 transition-all duration-300 w-full md:w-auto disabled:opacity-50 disabled:cursor-not-allowed"
                     style={{ fontFamily: 'Playfair Display, serif' }}
                   >
                     <span className="relative z-10">{isSubmitting ? 'Invio...' : 'Candidati Ora'}</span>
