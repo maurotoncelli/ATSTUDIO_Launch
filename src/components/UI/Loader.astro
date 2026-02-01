@@ -8,7 +8,7 @@
       <div class="inline-block h-12 w-12 animate-spin rounded-full border-4 border-solid border-[#a6c1ff] border-r-transparent"></div>
     </div>
     <p class="text-[#f0f4ff] text-sm tracking-wider">
-      LOADING <span id="loader-progress">0</span>%
+      CARICAMENTO <span id="loader-progress">0</span>%
     </p>
   </div>
 </div>
@@ -39,9 +39,9 @@
     if (loaderElement) {
       loaderElement.innerHTML = `
         <div class="text-center text-red-400">
-          <p class="mb-4">Failed to load experience</p>
+          <p class="mb-4">Errore di caricamento</p>
           <button onclick="location.reload()" class="px-4 py-2 border border-red-400 hover:bg-red-400 hover:text-black transition-colors">
-            RELOAD
+            RICARICA
           </button>
         </div>
       `;
