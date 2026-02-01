@@ -1,0 +1,105 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { 
+  title = "AT Studio | Coming April 2026", 
+  description = "Future-ready creative agency launching April 1st, 2026. Join the pilot program." 
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="description" content={description} />
+  <meta name="theme-color" content="#02040a" />
+  
+  <!-- iOS specific meta tags -->
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  
+  <!-- Open Graph / Social Media -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  
+  <!-- Preload critical assets -->
+  <link rel="preload" href="/models/LogoAT.glb" as="fetch" crossorigin="anonymous" />
+  
+  <title>{title}</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  
+  <!-- Global Styles -->
+  <link rel="stylesheet" href="/src/styles/global.css" />
+</head>
+<body>
+  <!-- WebGL Canvas -->
+  <canvas id="webgl-canvas"></canvas>
+  
+  <!-- Content Overlay -->
+  <div class="content-overlay">
+    <slot />
+  </div>
+  
+  <!-- Lenis Smooth Scroll (disabled on mobile/tablet) -->
+  <script>
+    import Lenis from 'lenis';
+    
+    // Check if desktop
+    const isDesktop = window.innerWidth >= 1024;
+    
+    if (isDesktop) {
+      // Initialize Lenis smooth scroll ONLY on desktop
+      const lenis = new Lenis({
+        duration: 1.2,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        orientation: 'vertical',
+        gestureOrientation: 'vertical',
+        smoothWheel: true,
+        wheelMultiplier: 1,
+        smoothTouch: false,
+        touchMultiplier: 2,
+        infinite: false,
+      });
+      
+      function raf(time) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+      }
+      
+      requestAnimationFrame(raf);
+      
+      // Store lenis instance globally for GSAP integration
+      window.lenis = lenis;
+    } else {
+      // On mobile/tablet, use native scroll
+      window.lenis = null;
+    }
+  </script>
+  
+  <!-- Initialize World -->
+  <script>
+    import World from '../components/Experience/World.js';
+    
+    // Wait for DOM to be ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initWorld);
+    } else {
+      initWorld();
+    }
+    
+    function initWorld() {
+      const canvas = document.querySelector('#webgl-canvas');
+      if (canvas) {
+        new World(canvas);
+      }
+    }
+  </script>
+</body>
+</html>

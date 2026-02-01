@@ -1,0 +1,23 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import Loader from '../components/UI/Loader.astro';
+import Interface from '../components/UI/Interface.astro';
+import PilotForm from '../components/UI/PilotForm.jsx';
+---
+
+<MainLayout 
+  title="AT Studio | Coming April 2026"
+  description="Future-ready creative agency launching April 1st, 2026. Join the pilot program."
+>
+  <!-- Loader -->
+  <Loader />
+  
+  <!-- Interface Overlay -->
+  <Interface />
+  
+  <!-- Pilot Form Modal (React) -->
+  <PilotForm client:only="react" />
+  
+  <!-- Spacer for scroll (solo desktop) -->
+  <div class="hidden lg:block h-[600vh]"></div>
+</MainLayout>

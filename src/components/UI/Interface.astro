@@ -1,0 +1,193 @@
+---
+// Main overlay interface
+---
+
+<div class="interface-container">
+  <!-- SVG Logo overlay (fades in at end) -->
+  <div id="logo-png" class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 opacity-0 transition-opacity duration-700 pointer-events-none w-auto h-auto max-w-[90vw] max-h-[50vh]">
+    <img
+      src="/logo-at.svg"
+      alt="AT Studio Logo"
+      class="block w-full h-full object-contain"
+    />
+  </div>
+
+  <!-- Header -->
+  <header class="fixed top-0 left-0 right-0 z-20 p-6 md:p-8 flex justify-between items-center mix-blend-difference">
+    <div class="text-[#f0f4ff] font-bold tracking-wider text-sm md:text-base">
+      AT STUDIO
+    </div>
+    <div class="text-[#f0f4ff] text-xs md:text-sm tracking-wider">
+      01/04/2026
+    </div>
+  </header>
+  
+  <!-- Scroll Indicator (solo desktop) -->
+  <div id="scroll-indicator" class="hidden lg:block fixed bottom-8 left-1/2 -translate-x-1/2 z-20 transition-opacity duration-500">
+    <div class="flex flex-col items-center gap-2">
+      <p class="text-[#f0f4ff] text-xs tracking-widest">SCROLL</p>
+      <div class="w-6 h-10 border-2 border-[#f0f4ff] rounded-full flex justify-center pt-2">
+        <div class="w-1 h-3 bg-[#f0f4ff] rounded-full animate-scroll-down"></div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Main Content (visibile subito su mobile/tablet, appare dopo scroll su desktop) -->
+  <div id="main-content" class="fixed left-0 right-0 bottom-12 md:bottom-20 lg:bottom-20 z-20 flex flex-col items-center opacity-100 lg:opacity-0 transition-opacity duration-1000 pointer-events-auto lg:pointer-events-none">
+    <div class="text-center px-4 md:px-6 max-w-3xl" style="font-family: 'Playfair Display', serif;">
+      
+      <!-- Title -->
+      <h1 class="text-2xl md:text-3xl lg:text-4xl font-semibold text-[#f0f4ff] tracking-[0.1em] md:tracking-[0.15em]">
+        AT Studio Launch
+      </h1>
+      
+      <div class="h-2 md:h-3"></div>
+      
+      <!-- Date -->
+      <p class="text-xs md:text-base text-[#c7d2ff] tracking-[0.15em] md:tracking-[0.2em]">
+        April 1st 2026
+      </p>
+      
+      <div class="h-4 md:h-5"></div>
+      
+      <!-- Countdown -->
+      <div id="countdown" class="flex gap-2 md:gap-6 justify-center text-[#a6c1ff] scale-90 md:scale-100">
+        <div class="text-center">
+          <div class="text-xl md:text-2xl lg:text-3xl font-bold" id="days">00</div>
+          <div class="text-[9px] md:text-xs tracking-wider mt-0.5 md:mt-1">DAYS</div>
+        </div>
+        <div class="text-xl md:text-2xl lg:text-3xl font-bold">:</div>
+        <div class="text-center">
+          <div class="text-xl md:text-2xl lg:text-3xl font-bold" id="hours">00</div>
+          <div class="text-[9px] md:text-xs tracking-wider mt-0.5 md:mt-1">HOURS</div>
+        </div>
+        <div class="text-xl md:text-2xl lg:text-3xl font-bold">:</div>
+        <div class="text-center">
+          <div class="text-xl md:text-2xl lg:text-3xl font-bold" id="minutes">00</div>
+          <div class="text-[9px] md:text-xs tracking-wider mt-0.5 md:mt-1">MIN</div>
+        </div>
+        <div class="text-xl md:text-2xl lg:text-3xl font-bold">:</div>
+        <div class="text-center">
+          <div class="text-xl md:text-2xl lg:text-3xl font-bold" id="seconds">00</div>
+          <div class="text-[9px] md:text-xs tracking-wider mt-0.5 md:mt-1">SEC</div>
+        </div>
+      </div>
+      
+      <div class="h-5 md:h-5"></div>
+      
+      <!-- Button -->
+      <button 
+        id="cta-button" 
+        class="group pointer-events-auto relative px-10 md:px-8 py-4 md:py-4 border-2 md:border border-[#f0f4ff]/40 md:border-[#f0f4ff]/30 text-[#f0f4ff] text-sm md:text-sm tracking-[0.25em] md:tracking-[0.3em] hover:border-[#f0f4ff] transition-all duration-500 overflow-hidden active:scale-95"
+      >
+        <span class="relative z-10 group-hover:text-[#02040a] transition-colors duration-500 font-medium">APPLY FOR PILOT</span>
+        <div class="absolute inset-0 bg-[#f0f4ff] transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500"></div>
+      </button>
+      
+      <div class="h-3 md:h-3"></div>
+      
+      <!-- Scarcity -->
+      <div class="text-[#c7d2ff]/70 text-xs md:text-xs tracking-[0.25em] md:tracking-[0.3em] font-medium">
+        3 SPOTS LEFT
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  
+  gsap.registerPlugin(ScrollTrigger);
+  
+  const isDesktop = window.innerWidth >= 1024;
+  
+  // Solo su desktop: gestione scroll trigger
+  if (isDesktop) {
+    let scrollIndicator = document.getElementById('scroll-indicator');
+    let mainContent = document.getElementById('main-content');
+    
+    // Hide scroll indicator on scroll
+    ScrollTrigger.create({
+      trigger: 'body',
+      start: 'top top',
+      end: '5% top',
+      onEnter: () => {
+        if (scrollIndicator) scrollIndicator.style.opacity = '0';
+      },
+      onLeaveBack: () => {
+        if (scrollIndicator) scrollIndicator.style.opacity = '1';
+      }
+    });
+    
+    // Show main content after 50% scroll (solo desktop)
+    ScrollTrigger.create({
+      trigger: 'body',
+      start: '50% top',
+      onEnter: () => {
+        if (mainContent) {
+          mainContent.style.pointerEvents = 'auto';
+          gsap.fromTo(
+            mainContent,
+            { opacity: 0, y: 12 },
+            { opacity: 1, y: 0, duration: 1.4, ease: 'power2.out' }
+          );
+        }
+      },
+      onLeaveBack: () => {
+        if (mainContent) {
+          gsap.to(mainContent, { opacity: 0, y: 6, duration: 0.6, ease: 'power2.in' });
+          mainContent.style.pointerEvents = 'none';
+        }
+      }
+    });
+  }
+
+  // Countdown timer to April 1, 2026
+  function updateCountdown() {
+    const targetDate = new Date('2026-04-01T00:00:00').getTime();
+    const now = new Date().getTime();
+    const distance = targetDate - now;
+    
+    if (distance < 0) {
+      document.getElementById('countdown')!.innerHTML = '<p class="text-2xl">LAUNCHED!</p>';
+      return;
+    }
+    
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    
+    document.getElementById('days')!.textContent = String(days).padStart(2, '0');
+    document.getElementById('hours')!.textContent = String(hours).padStart(2, '0');
+    document.getElementById('minutes')!.textContent = String(minutes).padStart(2, '0');
+    document.getElementById('seconds')!.textContent = String(seconds).padStart(2, '0');
+  }
+  
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+  
+  // CTA Button - Open modal
+  document.getElementById('cta-button')?.addEventListener('click', () => {
+    window.dispatchEvent(new CustomEvent('open-pilot-form'));
+  });
+</script>
+
+<style>
+  @keyframes scroll-down {
+    0% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(1rem);
+      opacity: 0;
+    }
+  }
+  
+  .animate-scroll-down {
+    animation: scroll-down 1.5s ease-in-out infinite;
+  }
+</style>

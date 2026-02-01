@@ -1,0 +1,56 @@
+---
+// Loader component
+---
+
+<div id="loader" class="fixed inset-0 z-50 flex items-center justify-center bg-[#02040a] transition-opacity duration-1000">
+  <div class="text-center">
+    <div class="mb-8">
+      <div class="inline-block h-12 w-12 animate-spin rounded-full border-4 border-solid border-[#a6c1ff] border-r-transparent"></div>
+    </div>
+    <p class="text-[#f0f4ff] text-sm tracking-wider">
+      LOADING <span id="loader-progress">0</span>%
+    </p>
+  </div>
+</div>
+
+<script>
+  // Listen for loading progress
+  let loaderElement = document.getElementById('loader');
+  let progressElement = document.getElementById('loader-progress');
+  
+  window.addEventListener('world:loading', (e) => {
+    const { progress } = e.detail;
+    if (progressElement) {
+      progressElement.textContent = Math.round(progress);
+    }
+  });
+  
+  window.addEventListener('world:ready', () => {
+    if (loaderElement) {
+      loaderElement.style.opacity = '0';
+      setTimeout(() => {
+        loaderElement.style.display = 'none';
+      }, 1000);
+    }
+  });
+  
+  window.addEventListener('world:error', (e) => {
+    console.error('World initialization error:', e.detail);
+    if (loaderElement) {
+      loaderElement.innerHTML = `
+        <div class="text-center text-red-400">
+          <p class="mb-4">Failed to load experience</p>
+          <button onclick="location.reload()" class="px-4 py-2 border border-red-400 hover:bg-red-400 hover:text-black transition-colors">
+            RELOAD
+          </button>
+        </div>
+      `;
+    }
+  });
+</script>
+
+<style>
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+</style>
