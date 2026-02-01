@@ -69,11 +69,11 @@ export default function PilotForm() {
       className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto bg-[#02040a] p-6 md:p-8 lg:p-12"
       onClick={handleClose}
     >
-      {/* Modal: Ottimizzato per mobile */}
+      {/* Modal: Ottimizzato per mobile - tutto visibile in una schermata */}
       <div 
         className="pilot-modal relative bg-transparent max-w-4xl w-full my-auto"
         onClick={(e) => e.stopPropagation()}
-        style={{ padding: '2rem 1.5rem' }}
+        style={{ padding: '1.5rem 1.5rem' }}
       >
         {/* Close button - Mobile friendly */}
         <button
@@ -84,14 +84,14 @@ export default function PilotForm() {
           ✕
         </button>
         
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-12 items-start">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-12 items-start">
           {/* Left: Info */}
-          <div className="md:col-span-4 space-y-5 md:space-y-6">
-            <h2 className="text-3xl md:text-3xl lg:text-4xl font-light text-[#f0f4ff] leading-tight tracking-tight" style={{ fontFamily: 'Playfair Display, serif' }}>
-              Pilot<br />Application
+          <div className="md:col-span-4 space-y-3 md:space-y-6">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-light text-[#f0f4ff] leading-tight tracking-tight" style={{ fontFamily: 'Playfair Display, serif' }}>
+              Pilot Application
             </h2>
-            <div className="h-px w-16 bg-[#a6c1ff]/30"></div>
-            <p className="text-[#c7d2ff]/60 text-sm md:text-sm leading-relaxed tracking-wide">
+            <div className="h-px w-12 bg-[#a6c1ff]/30"></div>
+            <p className="text-[#c7d2ff]/60 text-xs md:text-sm leading-relaxed tracking-wide hidden md:block">
               We are selecting 3 visionary partners for our Q2 2026 launch cycle. Tell us about your project.
             </p>
           </div>
@@ -99,16 +99,16 @@ export default function PilotForm() {
           {/* Right: Form */}
           <div className="md:col-span-8">
             {submitStatus === 'success' ? (
-              <div className="py-16 md:py-20 text-center md:text-left">
-                <p className="text-2xl md:text-2xl text-[#f0f4ff] font-light italic" style={{ fontFamily: 'Playfair Display, serif' }}>Application received.</p>
-                <p className="text-[#c7d2ff]/60 text-sm md:text-sm mt-4 tracking-widest uppercase">We will contact you soon.</p>
+              <div className="py-12 md:py-20 text-center md:text-left">
+                <p className="text-xl md:text-2xl text-[#f0f4ff] font-light italic" style={{ fontFamily: 'Playfair Display, serif' }}>Application received.</p>
+                <p className="text-[#c7d2ff]/60 text-sm md:text-sm mt-3 tracking-widest uppercase">We will contact you soon.</p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-12 md:space-y-14 lg:space-y-20">
+              <form onSubmit={handleSubmit} className="space-y-5 md:space-y-14 lg:space-y-20">
                 {/* Row 1: Name + Email */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-12 md:gap-y-12 lg:gap-y-20">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-5 md:gap-y-12 lg:gap-y-20">
                   <div className="relative">
-                    <label className="block text-xs md:text-xs tracking-[0.15em] md:tracking-[0.2em] text-[#c7d2ff]/50 uppercase mb-5">
+                    <label className="block text-[10px] md:text-xs tracking-[0.15em] md:tracking-[0.2em] text-[#c7d2ff]/50 uppercase mb-2">
                       Full Name
                     </label>
                     <input
@@ -122,7 +122,7 @@ export default function PilotForm() {
                     />
                   </div>
                   <div className="relative">
-                    <label className="block text-xs md:text-xs tracking-[0.15em] md:tracking-[0.2em] text-[#c7d2ff]/50 uppercase mb-5">
+                    <label className="block text-[10px] md:text-xs tracking-[0.15em] md:tracking-[0.2em] text-[#c7d2ff]/50 uppercase mb-2">
                       Email Address
                     </label>
                     <input
@@ -131,16 +131,16 @@ export default function PilotForm() {
                       value={formData.email}
                       onChange={handleChange}
                       required
-                      className="w-full bg-transparent border-b-2 md:border-b border-[#f0f4ff]/30 pb-4 text-[#f0f4ff] text-base md:text-base lg:text-lg focus:border-[#f0f4ff] outline-none transition-colors placeholder:text-[#c7d2ff]/20"
+                      className="w-full bg-transparent border-b-2 md:border-b border-[#f0f4ff]/30 pb-2 md:pb-4 text-[#f0f4ff] text-sm md:text-base lg:text-lg focus:border-[#f0f4ff] outline-none transition-colors placeholder:text-[#c7d2ff]/20"
                       placeholder="john@example.com"
                     />
                   </div>
                 </div>
 
                 {/* Row 2: Company + Website */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-12 md:gap-y-12 lg:gap-y-20">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-5 md:gap-y-12 lg:gap-y-20">
                   <div className="relative">
-                    <label className="block text-xs md:text-xs tracking-[0.15em] md:tracking-[0.2em] text-[#c7d2ff]/50 uppercase mb-5">
+                    <label className="block text-[10px] md:text-xs tracking-[0.15em] md:tracking-[0.2em] text-[#c7d2ff]/50 uppercase mb-2">
                       Company / Brand
                     </label>
                     <input
@@ -148,12 +148,12 @@ export default function PilotForm() {
                       name="company"
                       value={formData.company}
                       onChange={handleChange}
-                      className="w-full bg-transparent border-b-2 md:border-b border-[#f0f4ff]/30 pb-4 text-[#f0f4ff] text-base md:text-base lg:text-lg focus:border-[#f0f4ff] outline-none transition-colors placeholder:text-[#c7d2ff]/20"
+                      className="w-full bg-transparent border-b-2 md:border-b border-[#f0f4ff]/30 pb-2 md:pb-4 text-[#f0f4ff] text-sm md:text-base lg:text-lg focus:border-[#f0f4ff] outline-none transition-colors placeholder:text-[#c7d2ff]/20"
                       placeholder="Acme Inc."
                     />
                   </div>
                   <div className="relative">
-                    <label className="block text-xs md:text-xs tracking-[0.15em] md:tracking-[0.2em] text-[#c7d2ff]/50 uppercase mb-5">
+                    <label className="block text-[10px] md:text-xs tracking-[0.15em] md:tracking-[0.2em] text-[#c7d2ff]/50 uppercase mb-2">
                       Website URL
                     </label>
                     <input
@@ -161,7 +161,7 @@ export default function PilotForm() {
                       name="website"
                       value={formData.website}
                       onChange={handleChange}
-                      className="w-full bg-transparent border-b-2 md:border-b border-[#f0f4ff]/30 pb-4 text-[#f0f4ff] text-base md:text-base lg:text-lg focus:border-[#f0f4ff] outline-none transition-colors placeholder:text-[#c7d2ff]/20"
+                      className="w-full bg-transparent border-b-2 md:border-b border-[#f0f4ff]/30 pb-2 md:pb-4 text-[#f0f4ff] text-sm md:text-base lg:text-lg focus:border-[#f0f4ff] outline-none transition-colors placeholder:text-[#c7d2ff]/20"
                       placeholder="https://example.com"
                     />
                   </div>
@@ -169,28 +169,28 @@ export default function PilotForm() {
 
                 {/* Row 3: Project Vision (full width) */}
                 <div className="relative">
-                  <label className="block text-xs md:text-xs tracking-[0.15em] md:tracking-[0.2em] text-[#c7d2ff]/50 uppercase mb-5">
+                  <label className="block text-[10px] md:text-xs tracking-[0.15em] md:tracking-[0.2em] text-[#c7d2ff]/50 uppercase mb-2">
                     Project Vision
                   </label>
                   <textarea
                     name="details"
                     value={formData.details}
                     onChange={handleChange}
-                    rows={5}
-                    className="w-full bg-transparent border-b-2 md:border-b border-[#f0f4ff]/30 pb-4 text-[#f0f4ff] text-base md:text-base lg:text-lg focus:border-[#f0f4ff] outline-none transition-colors resize-none placeholder:text-[#c7d2ff]/20 leading-relaxed"
+                    rows={3}
+                    className="w-full bg-transparent border-b-2 md:border-b border-[#f0f4ff]/30 pb-2 md:pb-4 text-[#f0f4ff] text-sm md:text-base lg:text-lg focus:border-[#f0f4ff] outline-none transition-colors resize-none placeholder:text-[#c7d2ff]/20 leading-relaxed"
                     placeholder="Tell us about your project..."
                   />
                 </div>
 
                 {/* Submit */}
-                <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 md:gap-6 pt-6 md:pt-4 lg:pt-8">
+                <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 md:gap-6 pt-2 md:pt-4 lg:pt-8">
                   <p className="text-[10px] text-[#c7d2ff]/30 tracking-[0.2em] uppercase max-w-[200px] hidden md:block">
                     Personalized consultation included for selected candidates.
                   </p>
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="group relative px-10 md:px-12 lg:px-16 py-5 md:py-5 lg:py-6 border-2 md:border border-[#f0f4ff]/50 md:border-[#f0f4ff]/40 text-[#f0f4ff] text-sm md:text-sm lg:text-base tracking-[0.25em] md:tracking-[0.3em] font-medium md:font-light hover:border-[#f0f4ff] hover:bg-[#f0f4ff]/5 active:scale-95 transition-all duration-300 w-full md:w-auto disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="group relative px-8 md:px-12 lg:px-16 py-4 md:py-5 lg:py-6 border-2 md:border border-[#f0f4ff]/50 md:border-[#f0f4ff]/40 text-[#f0f4ff] text-sm md:text-sm lg:text-base tracking-[0.25em] md:tracking-[0.3em] font-medium md:font-light hover:border-[#f0f4ff] hover:bg-[#f0f4ff]/5 active:scale-95 transition-all duration-300 w-full md:w-auto disabled:opacity-50 disabled:cursor-not-allowed"
                     style={{ fontFamily: 'Playfair Display, serif' }}
                   >
                     <span className="relative z-10">{isSubmitting ? 'Sending...' : 'Apply Now'}</span>
