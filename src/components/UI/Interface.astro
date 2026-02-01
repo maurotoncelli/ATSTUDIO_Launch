@@ -38,14 +38,14 @@
       
       <!-- Title -->
       <h1 class="text-2xl md:text-3xl lg:text-4xl font-semibold text-[#f0f4ff] tracking-[0.1em] md:tracking-[0.15em]">
-        AT Studio Launch
+        Lancio AT Studio
       </h1>
       
       <div class="h-2 md:h-3"></div>
       
       <!-- Date -->
       <p class="text-xs md:text-base text-[#c7d2ff] tracking-[0.15em] md:tracking-[0.2em]">
-        April 1st 2026
+        1 Aprile 2026
       </p>
       
       <div class="h-4 md:h-5"></div>
@@ -54,12 +54,12 @@
       <div id="countdown" class="flex gap-2 md:gap-6 justify-center text-[#a6c1ff] scale-90 md:scale-100">
         <div class="text-center">
           <div class="text-xl md:text-2xl lg:text-3xl font-bold" id="days">00</div>
-          <div class="text-[9px] md:text-xs tracking-wider mt-0.5 md:mt-1">DAYS</div>
+          <div class="text-[9px] md:text-xs tracking-wider mt-0.5 md:mt-1">GIORNI</div>
         </div>
         <div class="text-xl md:text-2xl lg:text-3xl font-bold">:</div>
         <div class="text-center">
           <div class="text-xl md:text-2xl lg:text-3xl font-bold" id="hours">00</div>
-          <div class="text-[9px] md:text-xs tracking-wider mt-0.5 md:mt-1">HOURS</div>
+          <div class="text-[9px] md:text-xs tracking-wider mt-0.5 md:mt-1">ORE</div>
         </div>
         <div class="text-xl md:text-2xl lg:text-3xl font-bold">:</div>
         <div class="text-center">
@@ -80,7 +80,7 @@
         id="cta-button" 
         class="group pointer-events-auto relative px-10 md:px-8 py-4 md:py-4 border-2 md:border border-[#f0f4ff]/40 md:border-[#f0f4ff]/30 text-[#f0f4ff] text-sm md:text-sm tracking-[0.25em] md:tracking-[0.3em] hover:border-[#f0f4ff] transition-all duration-500 overflow-hidden active:scale-95"
       >
-        <span class="relative z-10 group-hover:text-[#02040a] transition-colors duration-500 font-medium">APPLY FOR PILOT</span>
+        <span class="relative z-10 group-hover:text-[#02040a] transition-colors duration-500 font-medium">CANDIDATI AL PILOT</span>
         <div class="absolute inset-0 bg-[#f0f4ff] transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500"></div>
       </button>
       
@@ -88,7 +88,7 @@
       
       <!-- Scarcity - rosso lampeggiante elegante -->
       <div class="scarcity-badge text-[#ff4444] text-sm md:text-base tracking-[0.3em] md:tracking-[0.35em] font-semibold">
-        3 SPOTS LEFT
+        3 POSTI DISPONIBILI
       </div>
       
     </div>
@@ -151,7 +151,7 @@
     const distance = targetDate - now;
     
     if (distance < 0) {
-      document.getElementById('countdown')!.innerHTML = '<p class="text-2xl">LAUNCHED!</p>';
+      document.getElementById('countdown')!.innerHTML = '<p class="text-2xl">LANCIATO!</p>';
       return;
     }
     
